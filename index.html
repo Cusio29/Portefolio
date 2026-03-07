@@ -3,308 +3,1328 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Marc-Olivier Bénié | Portfolio</title>
-  <meta name="description" content="Portfolio de Marc-Olivier Bénié – Analyste solution junior (BI & données), Informatique de gestion." />
+  <title>Marc-Olivier Bénié | Portfolio</title>
+  <meta name="description" content="Portfolio de Marc-Olivier Bénié – étudiant en informatique de gestion, passionné par la technologie, les bases de données, le développement et l’analyse." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-  :root{
-    /* Thème sombre simple */
-    --bg:#070A10;
-    --card:#0C101A;
-    --card2:#0A0E16;
-    --text:#E8EDF7;
-    --muted:#A7B0C5;
-    --line:rgba(232,237,247,.10);
+    :root {
+      --bg: #060810;
+      --bg2: #080C14;
+      --card: rgba(255,255,255,0.03);
+      --card-hover: rgba(255,255,255,0.055);
+      --border: rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.14);
+      --text: #F0F4FF;
+      --muted: #8896B3;
+      --muted2: #5A6A8A;
 
-    /* Accent discret (gris-bleu très léger) */
-    --accent:#94A3B8;
+      --cyan: #38BDF8;
+      --cyan-dim: rgba(56,189,248,0.12);
+      --cyan-glow: rgba(56,189,248,0.25);
 
-    --shadow: 0 10px 24px rgba(0,0,0,.45);
-    --radius: 16px;
-    --max: 980px;
+      --teal: #2DD4BF;
+      --violet: #818CF8;
+      --amber: #FCD34D;
 
-    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-    --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  }
+      --radius: 18px;
+      --radius-sm: 10px;
+      --max: 1040px;
 
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family: var(--sans);
-    color:var(--text);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
 
-    /* Background uniforme + léger vignettage (simple et sombre) */
-    background:
-      radial-gradient(1200px 600px at 50% -20%, rgba(148,163,184,.10), transparent 60%),
-      linear-gradient(180deg, var(--bg), #05070C 70%);
-    line-height:1.55;
-  }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  a{color:var(--text); text-decoration:none}
-  a:hover{opacity:.92; text-decoration:underline}
+    html { scroll-behavior: smooth; }
 
-  .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-  header{
-    position:sticky; top:0; z-index:10;
-    backdrop-filter: blur(10px);
-    background: rgba(7,10,16,.75);
-    border-bottom:1px solid var(--line);
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
 
-  nav{max-width:var(--max); margin:0 auto; padding:12px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between}
-  .brand{display:flex; gap:10px; align-items:center}
+    .ambient {
+      position: fixed;
+      top: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, rgba(129,140,248,0.04) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  /* Dot plus discret */
-  .dot{
-    width:10px;height:10px;border-radius:50%;
-    background: var(--accent);
-    box-shadow: none;
-  }
+    .ambient-2 {
+      position: fixed;
+      bottom: -200px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(45,212,191,0.05) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  .navlinks{display:flex; gap:14px; flex-wrap:wrap}
-  .navlinks a{font-size:14px; color:var(--muted)}
-  .navlinks a:hover{color:var(--text)}
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--teal));
+      z-index: 100;
+      transition: width 0.1s;
+    }
 
-  .hero{padding:34px 0 10px}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(6,8,16,0.72);
+      border-bottom: 1px solid var(--border);
+    }
 
-  /* Badge plus simple */
-  .badge{
-    display:inline-flex; gap:8px; align-items:center;
-    padding:6px 10px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--muted);
-    font-size:13px;
-    background: rgba(12,16,26,.65);
-  }
+    nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-  h1{margin:14px 0 8px; font-size:38px; line-height:1.15}
-  .subtitle{color:var(--muted); font-size:17px; max-width:70ch}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
 
-  .cta{margin-top:16px; display:flex; gap:12px; flex-wrap:wrap}
+    .brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan-glow);
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
 
-  /* Boutons sobres */
-  .btn{
-    display:inline-flex; gap:10px; align-items:center;
-    padding:10px 14px;
-    border-radius:12px;
-    border:1px solid var(--line);
-    background: rgba(12,16,26,.65);
-    box-shadow: none;
-    font-size:14px;
-  }
-  .btn:hover{background: rgba(12,16,26,.85)}
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 6px var(--cyan-glow); opacity: 1; }
+      50% { box-shadow: 0 0 16px var(--cyan-glow), 0 0 30px rgba(56,189,248,0.15); opacity: 0.8; }
+    }
 
-  /* Primary = juste un contour + fond un peu plus clair (pas de dégradé) */
-  .btn.primary{
-    border-color: rgba(148,163,184,.35);
-    background: rgba(12,16,26,.85);
-  }
+    .navlinks {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
 
-  .grid{display:grid; grid-template-columns: 1.3fr .7fr; gap:16px; margin-top:18px}
-  @media (max-width: 860px){ .grid{grid-template-columns:1fr} h1{font-size:34px}}
-  section{margin-top:26px}
+    .navlinks a {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
 
-  /* Cards uniformes */
-  .card{
-    background: rgba(12,16,26,.75);
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: none;
-    padding:16px;
-  }
+    .navlinks a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
 
-  .card h2{margin:0 0 10px; font-size:18px}
-  .card p{margin:8px 0; color:var(--muted)}
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cyan) !important;
+      border: 1px solid rgba(56,189,248,0.3) !important;
+      background: rgba(56,189,248,0.06) !important;
+    }
 
-  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .nav-cta:hover {
+      background: rgba(56,189,248,0.12) !important;
+      border-color: rgba(56,189,248,0.5) !important;
+    }
 
-  /* Chips plus clean */
-  .chip{
-    font-family: var(--mono);
-    font-size:12px;
-    padding:6px 10px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    color:var(--muted);
-    background: rgba(7,10,16,.35);
-  }
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
 
-  .projects{display:grid; grid-template-columns:1fr; gap:14px}
-  .projtitle{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
-  .projtitle h3{margin:0; font-size:16px}
-  .projmeta{font-family:var(--mono); color:var(--muted); font-size:12px}
+    .hero {
+      padding: 80px 0 60px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
 
-  ul{margin:10px 0 0 18px; color:var(--muted)}
-  .cols{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  @media (max-width: 860px){ .cols{grid-template-columns:1fr} }
+    .hero-content { max-width: 720px; }
 
-  footer{margin-top:26px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
-  .contact a{color:var(--text)}
-  .small{font-size:13px;color:var(--muted)}
-</style>
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.2);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      margin-bottom: 24px;
+      animation: fadeInDown 0.6s ease both;
+    }
 
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+
+    .hero h1 .name-accent {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 50%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 62ch;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+
+    .hero-desc strong { color: var(--text); font-weight: 500; }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s ease 0.3s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.22s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(45,212,191,0.1));
+      border: 1px solid rgba(56,189,248,0.35);
+      color: var(--cyan);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(45,212,191,0.18));
+      border-color: rgba(56,189,248,0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(56,189,248,0.15);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      background: var(--card-hover);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .hero-avatar {
+      animation: fadeIn 0.9s ease 0.2s both;
+    }
+
+    .avatar-ring {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--cyan), var(--teal), var(--violet));
+      box-shadow: 0 0 40px rgba(56,189,248,0.2);
+    }
+
+    .avatar-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0C1220, #0A1628);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: transparent;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.7s ease 0.4s both;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .stat-card:hover {
+      background: var(--card-hover);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--cyan);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s;
+    }
+
+    .card:hover {
+      border-color: var(--border-strong);
+      background: var(--card-hover);
+    }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .card p strong { color: var(--text); font-weight: 500; }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .about-text p + p { margin-top: 12px; }
+
+    .passion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .passion-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      transition: all 0.2s;
+    }
+
+    .passion-item:hover {
+      background: rgba(56,189,248,0.04);
+      border-color: rgba(56,189,248,0.2);
+      transform: translateY(-2px);
+    }
+
+    .passion-icon { font-size: 22px; margin-bottom: 6px; }
+
+    .passion-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .passion-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .info-item:last-child { border-bottom: none; }
+
+    .info-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted2);
+      min-width: 80px;
+      padding-top: 1px;
+    }
+
+    .info-value { color: var(--text); font-weight: 400; }
+
+    .info-value a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .info-value a:hover { text-decoration: underline; }
+
+    .chips {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(7,10,16,0.4);
+      transition: all 0.15s;
+    }
+
+    .chip:hover {
+      border-color: rgba(56,189,248,0.3);
+      color: var(--cyan);
+    }
+
+    .chip.accent {
+      border-color: rgba(56,189,248,0.25);
+      color: var(--cyan);
+      background: rgba(56,189,248,0.06);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+   .project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(56,189,248,0.04), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card:hover {
+      border-color: rgba(56,189,248,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+   .project-card > * {
+  position: relative;
+  z-index: 1;
+}
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .project-icon {
+      font-size: 28px;
+      width: 52px; height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56,189,248,0.07);
+      border: 1px solid rgba(56,189,248,0.15);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .project-title-block { flex: 1; }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .project-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted2);
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-points {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .project-points li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 5px 0 5px 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .project-points li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-size: 11px;
+      top: 7px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: all 0.2s;
+    }
+
+    .skill-group:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .skill-group-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .skill-item:last-child { border-bottom: none; }
+
+    .skill-name {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .skill-bar-wrap {
+      width: 70px;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--teal));
+      transform-origin: left;
+      animation: grow-bar 1s ease both;
+    }
+
+    @keyframes grow-bar {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .timeline { position: relative; padding-left: 28px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 6px; bottom: 6px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--cyan), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 24px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -25px;
+      top: 5px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      background: var(--bg);
+      box-shadow: 0 0 8px rgba(56,189,248,0.3);
+    }
+
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .timeline-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: all 0.22s;
+    }
+
+    .contact-link:hover {
+      background: var(--card-hover);
+      border-color: rgba(56,189,248,0.25);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .contact-icon {
+      font-size: 20px;
+      width: 42px; height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.15);
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .contact-info-sub {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    section { margin-top: 48px; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .main-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .passion-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px 60px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 16px; }
+      .navlinks { gap: 2px; }
+      .navlinks a { padding: 6px 8px; font-size: 12.5px; }
+    }
+
+    a { color: inherit; }
+  </style>
 </head>
-                
 <body>
+  <div id="progress"></div>
+  <div class="ambient"></div>
+  <div class="ambient-2"></div>
+
   <header>
     <nav>
       <div class="brand">
-        <span class="dot"></span>
-        <strong>Marc-Olivier</strong>
+        <span class="brand-dot"></span>
+        Marc-Olivier Bénié
       </div>
       <div class="navlinks">
         <a href="#apropos">À propos</a>
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Contact →</a>
       </div>
     </nav>
   </header>
 
   <main class="wrap">
+
     <section class="hero">
-      <div class="badge">🎯 Analyste solution junior • BI & données</div>
-      <h1>Portfolio – Marc-Olivier Bénié</h1>
-      <p class="subtitle">
-        Étudiant finissant en informatique de gestion (UdeS). J’aime transformer des besoins d’affaires en solutions TI
-        claires, documentées et testables, avec une approche orientée expérience client (CX) et qualité des données.
-      </p>
-      <div class="cta">
-        <!-- Remplace CV.pdf par le nom exact de ton fichier CV une fois ajouté au repo -->
-        
-        <a class="btn" href="#projets">📂 Voir mes projets</a>
-        <a class="btn" href="#contact">✉️ Me contacter</a>
+      <div class="hero-content">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Portfolio personnel · Projets · Compétences
+        </div>
+        <h1>
+          Marc-Olivier Bénié<br>
+          <span class="name-accent">Construire, analyser, améliorer</span>
+        </h1>
+        <p class="hero-desc">
+          Salut, je suis <strong>Marc-Olivier Bénié</strong> — étudiant finissant en
+          <strong>informatique de gestion à l'UdeS</strong>. Je suis passionné par la
+          <strong>technologie</strong>, les <strong>bases de données</strong>, le
+          <strong>développement</strong> et l’analyse. J’aime comprendre les besoins,
+          explorer des idées et créer des solutions utiles, qu’il s’agisse d’un projet web,
+          d’un système de données ou d’un outil orienté utilisateur.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projets">📂 Voir mes projets</a>
+          <a class="btn btn-ghost" href="#contact">✉️ Me contacter</a>
+          <a class="btn btn-ghost" href="https://github.com/Cusio29" target="_blank" rel="noopener">⌥ GitHub</a>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-ring">
+          <div class="avatar-inner">MOB</div>
+        </div>
       </div>
     </section>
 
-    <div class="grid">
-      <section id="apropos" class="card">
-        <h2>À propos</h2>
-        <p>
-          Je suis étudiant finissant en informatique de gestion à l’Université de Sherbrooke.
-          Je m’intéresse particulièrement à l’analyse de solutions TI, la documentation fonctionnelle,
-          la qualité des données et l’intelligence d’affaires.
-        </p>
-        <p>
-          Je recherche un stage/emploi junior où je peux contribuer à des solutions orientées client,
-          collaborer en environnement Agile et livrer des résultats concrets (spécifications, tests,
-          tableaux de bord, améliorations de processus).
-        </p>
-        <div class="chips">
-          <span class="chip">Analyse des besoins</span>
-          <span class="chip">Exigences fonctionnelles</span>
-          <span class="chip">Tests & validation</span>
-          <span class="chip">Power BI</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Agile/Scrum</span>
-        </div>
-      </section>
+    <div class="stats-row reveal">
+      <div class="stat-card">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Projets TI, BI & web</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">SQL</div>
+        <div class="stat-label">+ Power BI + React</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Agile</div>
+        <div class="stat-label">Collaboration & projets</div>
+      </div>
+    </div>
 
-      <aside class="card">
-        <h2>Infos rapides</h2>
-        <p><strong>Localisation :</strong> Sherbrooke, QC</p>
-        <p><strong>Rôles ciblés :</strong> Analyste solution • Analyste d’affaires TI • BI (junior)</p>
-        <p><strong>Forces :</strong> rigueur, structuration, communication, qualité des données</p>
-        <p class="small"><strong>GitHub :</strong> <a href="https://github.com/Cusio29" target="_blank" rel="noopener">github.com/Cusio29</a></p>
-        <!-- Ajoute ton LinkedIn si tu veux -->
-         <p class="small"><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">Mon profil</a></p> 
-      </aside>
+    <div class="main-grid" id="apropos">
+
+      <div class="card reveal">
+        <div class="section-label">Profil</div>
+        <h2>À propos de moi</h2>
+        <div class="about-text">
+          <p>
+            Je suis un étudiant finissant en <strong>informatique de gestion</strong> à l’Université de Sherbrooke,
+            avec un intérêt marqué pour la <strong>technologie</strong> et tout ce qu’elle permet de construire,
+            d’optimiser et de mieux comprendre. J’aime découvrir comment un besoin peut être transformé en solution
+            concrète, utile et bien structurée.
+          </p>
+          <p>
+            Mon parcours m’a amené à développer un fort intérêt pour les <strong>bases de données</strong>,
+            la modélisation, la qualité de l’information et l’analyse. J’aime travailler avec les données,
+            les organiser, les comprendre et les utiliser pour produire quelque chose de clair, de logique et de pertinent.
+          </p>
+          <p>
+            Je m’intéresse aussi beaucoup au <strong>développement</strong>, particulièrement lorsqu’il s’agit de créer
+            des applications ou des interfaces qui répondent à de vrais besoins. Ce portfolio reflète donc un profil
+            polyvalent, curieux et motivé, à l’intersection de la technologie, des données et de la création de solutions.
+          </p>
+        </div>
+
+        <div class="passion-grid">
+          <div class="passion-item">
+            <div class="passion-icon">⚙️</div>
+            <div class="passion-title">Technologie</div>
+            <div class="passion-desc">Curieux des outils numériques, de l’automatisation et de la manière dont la technologie peut améliorer le quotidien.</div>
+          </div>
+          <div class="passion-item">
+            <div class="passion-icon">🗄️</div>
+            <div class="passion-title">Bases de données</div>
+            <div class="passion-desc">Intérêt marqué pour la modélisation, la structuration de l’information et la qualité des données.</div>
+          </div>
+          <div class="passion-item">
+            <div class="passion-icon">💻</div>
+            <div class="passion-title">Développement</div>
+            <div class="passion-desc">J’aime concevoir des applications simples, utiles et bien organisées, du besoin initial jusqu’au résultat final.</div>
+          </div>
+          <div class="passion-item">
+            <div class="passion-icon">📊</div>
+            <div class="passion-title">Analyse</div>
+            <div class="passion-desc">Comprendre un problème, explorer ses dimensions et proposer une solution logique fait partie de ce qui me motive le plus.</div>
+          </div>
+        </div>
+
+        <div class="chips">
+          <span class="chip accent">Technologie</span>
+          <span class="chip accent">Bases de données</span>
+          <span class="chip accent">Développement</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">React</span>
+          <span class="chip">Documentation</span>
+          <span class="chip">Git</span>
+          <span class="chip">Analyse</span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="card reveal">
+          <div class="section-label">Infos</div>
+          <h2>Contact rapide</h2>
+          <div>
+            <div class="info-item">
+              <span class="info-label">Statut</span>
+              <span class="info-value">Étudiant finissant — UdeS</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Intérêts</span>
+              <span class="info-value">Technologie • Données • Développement</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value"><a href="mailto:beniemarcolivier1@gmail.com">beniemarcolivier1@gmail.com</a></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">GitHub</span>
+              <span class="info-value"><a href="https://github.com/Cusio29" target="_blank" rel="noopener">github.com/Cusio29</a></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">LinkedIn</span>
+              <span class="info-value"><a href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">Voir le profil →</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="section-label">Formation</div>
+          <h2>Parcours</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-period">2024 – 2026</div>
+              <div class="timeline-title">B.Sc. Informatique de gestion</div>
+              <div class="timeline-sub">Université de Sherbrooke</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-period">En cours</div>
+              <div class="timeline-title">Data Analytics Master 2026</div>
+              <div class="timeline-sub">Udemy</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <section id="projets">
-      <div class="card">
-        <h2>Projets</h2>
-        <div class="projects">
+      <div class="section-head reveal">
+        <div class="section-label">Réalisations</div>
+        <h2>Projets récents</h2>
+        <p>Quelques projets qui illustrent ma curiosité, ma polyvalence et ma manière d’apprendre en construisant.</p>
+      </div>
 
-          <article class="card">
-            <div class="projtitle">
-              <h3>Projet BI – Tableau de bord décisionnel (Power BI + SQL)</h3>
-              <div class="projmeta">BI • KPI • Data quality</div>
-            </div>
-            <ul>
-              <li>Objectif : produire des KPI utiles à partir de données opérationnelles.</li>
-              <li>Travail : nettoyage/validation des données, requêtes SQL, visuels Power BI, recommandations.</li>
-              <li>Résultat : tableau de bord clair pour des parties prenantes non techniques.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">KPI</span>
-            </div>
-          </article>
+      <div class="projects-grid">
 
-          <article class="card">
-            <div class="projtitle">
-              <h3>Conception d’entrepôt de données (ETL/ELT + modélisation)</h3>
-              <div class="projmeta">Données • Modélisation • ETL/ELT</div>
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">📝</div>
+            <div class="project-title-block">
+              <div class="project-title">TaskLite — Application web de gestion de tâches</div>
+              <div class="project-meta">React • TypeScript • IndexedDB • UI/UX</div>
             </div>
-            <ul>
-              <li>Objectif : migrer des données opérationnelles vers une base analytique / entrepôt.</li>
-              <li>Travail : modélisation, intégration multi-sources, règles de qualité, documentation et tests.</li>
-              <li>Résultat : données structurées et fiables pour l’analyse.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Modélisation</span><span class="chip">ETL/ELT</span><span class="chip">Qualité des données</span>
-            </div>
-          </article>
+          </div>
+          <p class="project-desc">
+            Conception et développement d’une application web permettant de centraliser, organiser et suivre des tâches
+            dans une interface moderne et intuitive. Ce projet met en valeur mon intérêt pour le développement,
+            l’expérience utilisateur et la structuration logique de l’information.
+          </p>
+          <ul class="project-points">
+            <li>Création, gestion et suppression de tâches avec priorités, statuts et échéances</li>
+            <li>Organisation des tâches par listes et filtres avancés</li>
+            <li>Gestion du cycle de vie des tâches : TODO, DOING, DONE</li>
+            <li>Détection des tâches en retard et vue rapide des tâches du jour</li>
+            <li>Stockage local des données dans le navigateur avec IndexedDB et Dexie.js</li>
+            <li>Interface moderne avec cartes, badges visuels, recherche et statistiques</li>
+          </ul>
+          <div class="chips">
+            <span class="chip accent">React</span>
+            <span class="chip accent">TypeScript</span>
+            <span class="chip accent">Dexie.js</span>
+            <span class="chip">IndexedDB</span>
+            <span class="chip">UI responsive</span>
+            <span class="chip">Logique métier</span>
+          </div>
+          <div class="project-links">
+            <a class="btn btn-primary" href="https://github.com/Cusio29/Task-Lite" target="_blank" rel="noopener">
+              🔗 Voir le projet sur GitHub
+            </a>
+          </div>
+        </div>
 
-          <article class="card">
-            <div class="projtitle">
-              <h3>Analyse de solution TI – Orientation expérience client (CX)</h3>
-              <div class="projmeta">Analyse • Documentation • Tests</div>
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">📊</div>
+            <div class="project-title-block">
+              <div class="project-title">Tableau de bord décisionnel — Power BI + SQL</div>
+              <div class="project-meta">BI • KPI • Data Quality • Visualisation</div>
             </div>
-            <ul>
-              <li>Objectif : analyser un besoin utilisateur et proposer une solution TI structurée.</li>
-              <li>Travail : exigences fonctionnelles, scénarios de tests, collaboration d’équipe.</li>
-              <li>Résultat : solution documentée, compréhensible et prête à livrer.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Exigences</span><span class="chip">Tests</span><span class="chip">Agile</span>
-            </div>
-          </article>
+          </div>
+          <p class="project-desc">
+            Conception d’un tableau de bord interactif permettant de suivre des indicateurs clés de performance
+            à partir de données opérationnelles. Ce projet m’a permis de travailler la transformation de données,
+            la visualisation et la structuration d’informations utiles.
+          </p>
+          <ul class="project-points">
+            <li>Définition et sélection des KPI pertinents</li>
+            <li>Nettoyage, validation et transformation des données sources via SQL</li>
+            <li>Création de visuels clairs et interactifs dans Power BI</li>
+            <li>Documentation des règles et des sources utilisées</li>
+          </ul>
+          <div class="chips">
+            <span class="chip accent">Power BI</span>
+            <span class="chip accent">SQL</span>
+            <span class="chip">KPI</span>
+            <span class="chip">DAX</span>
+            <span class="chip">Qualité des données</span>
+          </div>
+        </div>
 
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🏗️</div>
+            <div class="project-title-block">
+              <div class="project-title">Entrepôt de données — ETL/ELT + Modélisation</div>
+              <div class="project-meta">Data Warehouse • Modélisation • ETL/ELT • Intégration</div>
+            </div>
+          </div>
+          <p class="project-desc">
+            Projet de structuration et de migration de données vers une architecture analytique organisée.
+            Ce travail met en avant mon intérêt pour la modélisation, l’intégration de données et la cohérence
+            des structures utilisées à des fins analytiques.
+          </p>
+          <ul class="project-points">
+            <li>Modélisation dimensionnelle avec tables de faits et dimensions</li>
+            <li>Conception et documentation des pipelines ETL/ELT</li>
+            <li>Mise en place de règles de qualité des données</li>
+            <li>Tests d’intégration et validation du processus global</li>
+          </ul>
+          <div class="chips">
+            <span class="chip accent">Modélisation dimensionnelle</span>
+            <span class="chip accent">ETL/ELT</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Qualité des données</span>
+            <span class="chip">Documentation</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🎯</div>
+            <div class="project-title-block">
+              <div class="project-title">Analyse de solution TI</div>
+              <div class="project-meta">Analyse • Exigences • Tests • Collaboration</div>
+            </div>
+          </div>
+          <p class="project-desc">
+            Analyse d’un besoin utilisateur et structuration d’une solution TI documentée et testable.
+            Ce projet m’a permis d’explorer la partie plus fonctionnelle du travail informatique :
+            comprendre un besoin, le clarifier et le traduire en éléments concrets.
+          </p>
+          <ul class="project-points">
+            <li>Recueil et clarification des besoins</li>
+            <li>Rédaction d’exigences fonctionnelles et non fonctionnelles</li>
+            <li>Conception de scénarios et cas de tests</li>
+            <li>Travail d’équipe et organisation du projet en mode collaboratif</li>
+          </ul>
+          <div class="chips">
+            <span class="chip accent">Analyse</span>
+            <span class="chip accent">Exigences</span>
+            <span class="chip">Tests</span>
+            <span class="chip">Documentation</span>
+            <span class="chip">Collaboration</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="competences" class="card">
-      <h2>Compétences</h2>
-      <div class="cols">
-        <div>
-          <h3 style="margin:0 0 8px;">Fonctionnel</h3>
-          <ul>
-            <li>Analyse des besoins & exigences fonctionnelles</li>
-            <li>Documentation, scénarios et cas de tests</li>
-            <li>Amélioration des processus & collaboration inter-équipes</li>
-          </ul>
+    <section id="competences">
+      <div class="section-head reveal">
+        <div class="section-label">Compétences</div>
+        <h2>Boîte à outils</h2>
+        <p>Un profil polyvalent à l’intersection des données, du développement et de la structuration de solutions.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <div class="skill-group-title">📐 Analyse & Structuration</div>
+          <div class="skill-item">
+            <span class="skill-name">Analyse des besoins</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Exigences fonctionnelles</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Tests & validation</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Documentation</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Travail en équipe</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+          </div>
         </div>
-        <div>
-          <h3 style="margin:0 0 8px;">Technique</h3>
-          <ul>
-            <li>SQL • Qualité des données • KPI</li>
-            <li>Power BI</li>
-            <li>Git • Docker • VS Code</li>
-            <li>Notions : Python, JavaScript</li>
-          </ul>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-title">🗄️ Données & BI</div>
+          <div class="skill-item">
+            <span class="skill-name">SQL</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:86%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Power BI</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">ETL / ELT</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:74%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Modélisation de données</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:76%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Qualité des données</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-title">💻 Développement & Outils</div>
+          <div class="skill-item">
+            <span class="skill-name">Git / GitHub</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:58%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">React</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:62%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">VS Code</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="card contact">
-      <h2>Contact</h2>
-      <p> <a href="mailto:beniemarcolivier1@gmail.com">beniemarcolivier1@gmail.com</a></p>
-      <p>GitHub : <a href="https://github.com/Cusio29" target="_blank" rel="noopener">github.com/Cusio29</a></p>
-     
-       <p class="small"><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener"> profil LinkedIn</a></p> 
-      <p class="small">Dernière mise à jour : 2026</p>
+    <section id="contact">
+      <div class="section-head reveal">
+        <div class="section-label">Contact</div>
+        <h2>Restons en contact</h2>
+        <p>Tu peux joindre sur ces différents canaux.</p>
+      </div>
+
+      <div class="contact-grid reveal">
+        <a class="contact-link" href="mailto:beniemarcolivier1@gmail.com">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-info-title">Email</div>
+            <div class="contact-info-sub">beniemarcolivier1@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">
+          <div class="contact-icon">🔗</div>
+          <div>
+            <div class="contact-info-title">LinkedIn</div>
+            <div class="contact-info-sub">marc-olivier-benie</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://github.com/Cusio29" target="_blank" rel="noopener">
+          <div class="contact-icon">⌥</div>
+          <div>
+            <div class="contact-info-title">GitHub</div>
+            <div class="contact-info-sub">github.com/Cusio29</div>
+          </div>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-info-title">Localisation</div>
+            <div class="contact-info-sub">Sherbrooke, Québec 🍁</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
-      © <span id="y"></span> Marc-Olivier Bénié • Portfolio
+      <span class="footer-brand">Marc-Olivier Bénié</span>
+      <span>Technologie · Données · Développement</span>
+      <span>© <span id="y"></span> — Mis à jour en 2026</span>
     </footer>
   </main>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    window.addEventListener('scroll', () => {
+      const h = document.body.scrollHeight - window.innerHeight;
+      document.getElementById('progress').style.width = (window.scrollY / h * 100) + '%';
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
