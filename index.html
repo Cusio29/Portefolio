@@ -3,888 +3,731 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Marc-Olivier Bénié | Portfolio</title>
-  <meta name="description" content="Portfolio de Marc-Olivier Bénié – étudiant en informatique de gestion, passionné par la technologie, les bases de données, le développement et l’analyse." />
+  <title>Marc-Olivier Bénié — Analyste TI & BI | Data Science</title>
+  <meta name="description" content="Portfolio de Marc-Olivier Bénié – étudiant finissant en informatique de gestion (UdeS), spécialisé en BI, SQL, analyse de données et data science." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
+    /* ─── Tokens ─── */
     :root {
-      --bg: #060810;
-      --bg2: #080C14;
-      --card: rgba(255,255,255,0.03);
-      --card-hover: rgba(255,255,255,0.055);
-      --border: rgba(255,255,255,0.07);
-      --border-strong: rgba(255,255,255,0.14);
-      --text: #F0F4FF;
-      --muted: #8896B3;
-      --muted2: #5A6A8A;
+      --bg:          #0A0C0F;
+      --bg2:         #0F1217;
+      --surface:     #13171E;
+      --surface2:    #1A1F29;
+      --surface3:    #1F2533;
 
-      --cyan: #38BDF8;
-      --cyan-dim: rgba(56,189,248,0.12);
-      --cyan-glow: rgba(56,189,248,0.25);
+      --ink:         #EEF2FF;
+      --ink2:        #C0C8DC;
+      --muted:       #7A8499;
+      --faint:       #404858;
 
-      --teal: #2DD4BF;
-      --violet: #818CF8;
-      --amber: #FCD34D;
+      --green:       #22C55E;
+      --green-dim:   rgba(34,197,94,0.12);
+      --green-glow:  rgba(34,197,94,0.25);
+      --green-mid:   #16A34A;
 
-      --radius: 18px;
-      --radius-sm: 10px;
-      --max: 1040px;
+      --accent2:     #38BDF8;
+      --accent3:     #A78BFA;
 
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --border:      rgba(255,255,255,0.07);
+      --border-str:  rgba(255,255,255,0.13);
+
+      --radius:      16px;
+      --radius-sm:   10px;
+      --max:         1060px;
+
+      --ff-display:  'Syne', sans-serif;
+      --ff-body:     'Geist', system-ui, sans-serif;
+      --ff-mono:     'Geist Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-body);
-      color: var(--text);
+      font-family: var(--ff-body);
       background: var(--bg);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    /* Subtle grid background */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
     }
 
-    .ambient {
-      position: fixed;
-      top: -300px;
-      left: 50%;
+    /* Top glow */
+    .glow-top {
+      position: fixed; top: -200px; left: 50%;
       transform: translateX(-50%);
-      width: 900px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, rgba(129,140,248,0.04) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
     }
 
-    .ambient-2 {
-      position: fixed;
-      bottom: -200px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(45,212,191,0.05) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    /* ─── Progress ─── */
     #progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--cyan), var(--teal));
-      z-index: 100;
-      transition: width 0.1s;
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--accent2));
+      z-index: 200;
+      transition: width 0.08s linear;
     }
 
+    /* ─── Nav ─── */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px) saturate(180%);
-      background: rgba(6,8,16,0.72);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,12,15,0.85);
+      backdrop-filter: blur(16px) saturate(160%);
       border-bottom: 1px solid var(--border);
     }
 
     nav {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
       height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--ff-display);
+      font-weight: 700; font-size: 15px;
+      color: var(--ink);
+      text-decoration: none;
     }
 
-    .brand-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan-glow);
-      animation: pulse-dot 2.5s ease-in-out infinite;
+    .brand-mono {
+      width: 34px; height: 34px;
+      background: var(--green);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 13px; font-weight: 800;
+      color: #000;
     }
 
-    @keyframes pulse-dot {
-      0%, 100% { box-shadow: 0 0 6px var(--cyan-glow); opacity: 1; }
-      50% { box-shadow: 0 0 16px var(--cyan-glow), 0 0 30px rgba(56,189,248,0.15); opacity: 0.8; }
-    }
-
-    .navlinks {
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
+    .navlinks { display: flex; gap: 2px; align-items: center; }
 
     .navlinks a {
-      font-family: var(--font-body);
-      font-size: 13.5px;
-      font-weight: 500;
+      font-size: 13.5px; font-weight: 400;
       color: var(--muted);
       text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: all 0.2s;
+      padding: 6px 13px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
     }
 
-    .navlinks a:hover {
-      color: var(--text);
-      background: rgba(255,255,255,0.05);
-    }
+    .navlinks a:hover { color: var(--ink); background: var(--surface2); }
 
     .nav-cta {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--cyan) !important;
-      border: 1px solid rgba(56,189,248,0.3) !important;
-      background: rgba(56,189,248,0.06) !important;
+      font-weight: 500 !important;
+      color: var(--green) !important;
+      border: 1px solid rgba(34,197,94,0.35) !important;
+      background: rgba(34,197,94,0.07) !important;
     }
 
     .nav-cta:hover {
-      background: rgba(56,189,248,0.12) !important;
-      border-color: rgba(56,189,248,0.5) !important;
+      background: var(--green) !important;
+      color: #000 !important;
+      border-color: var(--green) !important;
     }
 
+    /* ─── Layout ─── */
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 24px 80px;
-      position: relative;
-      z-index: 1;
+      padding: 0 28px 100px;
+      position: relative; z-index: 1;
     }
 
+    /* ─── Hero ─── */
     .hero {
       padding: 80px 0 60px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
+      gap: 48px; align-items: center;
     }
 
-    .hero-content { max-width: 720px; }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(56,189,248,0.08);
-      border: 1px solid rgba(56,189,248,0.2);
-      border-radius: 999px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--cyan);
-      margin-bottom: 24px;
-      animation: fadeInDown 0.6s ease both;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 11px; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.14em;
+      margin-bottom: 22px;
+      opacity: 0; animation: fadeUp 0.5s ease 0.05s forwards;
     }
 
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-      animation: pulse-dot 2s ease-in-out infinite;
+    .hero-eyebrow::before {
+      content: ''; width: 22px; height: 1px; background: var(--green);
     }
 
     .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(38px, 5vw, 58px);
+      font-family: var(--ff-display);
+      font-size: clamp(42px, 5.5vw, 66px);
       font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 20px;
-      animation: fadeInUp 0.7s ease 0.1s both;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 8px;
+      opacity: 0; animation: fadeUp 0.55s ease 0.12s forwards;
     }
 
-    .hero h1 .name-accent {
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 50%, var(--violet) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--green) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .hero-tagline {
+      font-family: var(--ff-display);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400; color: var(--muted);
+      margin-bottom: 26px;
+      opacity: 0; animation: fadeUp 0.55s ease 0.18s forwards;
     }
 
     .hero-desc {
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--muted);
-      margin-bottom: 32px;
-      max-width: 62ch;
-      animation: fadeInUp 0.7s ease 0.2s both;
+      font-size: 16px; line-height: 1.75;
+      color: var(--ink2); max-width: 58ch;
+      margin-bottom: 36px;
+      opacity: 0; animation: fadeUp 0.55s ease 0.24s forwards;
     }
 
-    .hero-desc strong { color: var(--text); font-weight: 500; }
+    .hero-desc strong { color: var(--green); font-weight: 600; }
 
     .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      animation: fadeInUp 0.7s ease 0.3s both;
+      display: flex; gap: 10px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.55s ease 0.3s forwards;
     }
 
+    /* ─── Buttons ─── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 20px;
-      border-radius: 12px;
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 10px;
+      font-family: var(--ff-body);
+      font-size: 13.5px; font-weight: 500;
       text-decoration: none;
-      transition: all 0.22s;
-      cursor: pointer;
-      border: none;
+      transition: all 0.18s; cursor: pointer; border: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(45,212,191,0.1));
-      border: 1px solid rgba(56,189,248,0.35);
-      color: var(--cyan);
+      background: var(--green);
+      color: #000; font-weight: 700;
+      box-shadow: 0 0 0 1px var(--green), 0 4px 20px var(--green-dim);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(45,212,191,0.18));
-      border-color: rgba(56,189,248,0.6);
+      background: #16a34a;
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(56,189,248,0.15);
-      text-decoration: none;
+      box-shadow: 0 0 0 1px #16a34a, 0 8px 28px rgba(34,197,94,0.3);
     }
 
     .btn-ghost {
-      background: var(--card);
-      border: 1px solid var(--border-strong);
-      color: var(--text);
+      background: var(--surface2);
+      color: var(--ink2);
+      border: 1px solid var(--border-str);
     }
 
     .btn-ghost:hover {
-      background: var(--card-hover);
-      border-color: var(--border-strong);
+      background: var(--surface3);
+      border-color: rgba(255,255,255,0.2);
       transform: translateY(-1px);
-      text-decoration: none;
     }
 
-    .hero-avatar {
-      animation: fadeIn 0.9s ease 0.2s both;
+    /* Hero visual */
+    .hero-visual {
+      opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards;
+      display: flex; flex-direction: column; gap: 12px; align-items: center;
     }
 
-    .avatar-ring {
+    .hero-card {
       width: 160px; height: 160px;
-      border-radius: 50%;
-      padding: 3px;
-      background: linear-gradient(135deg, var(--cyan), var(--teal), var(--violet));
-      box-shadow: 0 0 40px rgba(56,189,248,0.2);
+      background: var(--surface);
+      border: 1px solid var(--border-str);
+      border-radius: 24px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
     }
 
-    .avatar-inner {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0C1220, #0A1628);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 800;
-      color: transparent;
-      background: linear-gradient(135deg, var(--cyan), var(--teal));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--accent2));
     }
 
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
-      animation: fadeInUp 0.7s ease 0.4s both;
+    .hero-initials {
+      font-family: var(--ff-display);
+      font-size: 44px; font-weight: 800; color: var(--green);
+      letter-spacing: -0.05em; line-height: 1;
     }
 
-    .stat-card {
-      background: var(--card);
+    .hero-sub {
+      font-family: var(--ff-mono);
+      font-size: 9px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+
+    .avail-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px;
+      background: var(--surface);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 999px;
+      font-size: 12px; font-weight: 500; color: var(--green);
+      box-shadow: 0 0 12px rgba(34,197,94,0.08);
+    }
+
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse-avail 2.5s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--green-glow);
+    }
+
+    @keyframes pulse-avail {
+      0%,100% { box-shadow: 0 0 6px var(--green-glow); }
+      50% { box-shadow: 0 0 14px var(--green-glow); }
+    }
+
+    /* ─── Position strip ─── */
+    .pos-strip {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 56px;
+      opacity: 0; animation: fadeUp 0.5s ease 0.36s forwards;
+    }
+
+    .pos-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      text-align: center;
-      transition: all 0.2s;
+      border-radius: 999px;
+      font-size: 13px; color: var(--ink2);
     }
 
-    .stat-card:hover {
-      background: var(--card-hover);
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
+    .pos-pill.hl {
+      background: var(--green-dim);
+      border-color: rgba(34,197,94,0.3);
+      color: var(--green); font-weight: 600;
     }
 
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--cyan), var(--teal));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
+    /* ─── Section labels ─── */
     .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 10.5px; font-weight: 500;
+      color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.14em;
+      margin-bottom: 12px;
     }
 
     .section-label::before {
-      content: '';
-      width: 20px; height: 1px;
-      background: var(--cyan);
+      content: ''; width: 18px; height: 1px; background: var(--green);
     }
 
+    .section-head { margin-bottom: 28px; }
+
+    .section-head h2 {
+      font-family: var(--ff-display);
+      font-size: 30px; font-weight: 800;
+      letter-spacing: -0.03em; color: var(--ink);
+    }
+
+    .section-head p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+    section { margin-top: 60px; }
+
+    /* ─── Cards ─── */
     .card {
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px;
-      transition: all 0.25s;
+      padding: 28px 30px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
 
     .card:hover {
-      border-color: var(--border-strong);
-      background: var(--card-hover);
+      border-color: var(--border-str);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
     }
 
-    .card h2 {
-      font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
-
-    .card p strong { color: var(--text); font-weight: 500; }
-
+    /* ─── About ─── */
     .main-grid {
       display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
+      grid-template-columns: 1.4fr 0.6fr;
       gap: 16px;
-      margin-bottom: 16px;
     }
 
-    .about-text p + p { margin-top: 12px; }
-
-    .passion-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 20px;
+    .about-intro {
+      font-size: 15.5px; line-height: 1.75; color: var(--ink2); margin-bottom: 24px;
     }
 
-    .passion-item {
-      background: rgba(255,255,255,0.02);
+    .about-intro p + p { margin-top: 14px; }
+    .about-intro strong { color: var(--green); font-weight: 600; }
+
+    .value-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;
+    }
+
+    .val-item {
+      background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       padding: 14px;
-      transition: all 0.2s;
+      transition: border-color 0.15s, background 0.15s;
     }
 
-    .passion-item:hover {
-      background: rgba(56,189,248,0.04);
-      border-color: rgba(56,189,248,0.2);
-      transform: translateY(-2px);
+    .val-item:hover {
+      border-color: rgba(34,197,94,0.3);
+      background: var(--surface2);
     }
 
-    .passion-icon { font-size: 22px; margin-bottom: 6px; }
+    .val-icon { font-size: 18px; margin-bottom: 6px; }
+    .val-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .val-desc { font-size: 12px; color: var(--muted); line-height: 1.45; }
 
-    .passion-title {
-      font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .passion-desc {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
+    /* Info panel */
     .info-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
+      display: flex; gap: 10px; align-items: baseline;
+      padding: 11px 0; border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
     }
 
-    .info-item:last-child { border-bottom: none; }
+    .info-item:first-child { padding-top: 0; }
+    .info-item:last-child { border-bottom: none; padding-bottom: 0; }
 
     .info-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted2);
-      min-width: 80px;
-      padding-top: 1px;
+      font-family: var(--ff-mono);
+      font-size: 10px; color: var(--faint);
+      min-width: 68px;
+      text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0;
     }
 
-    .info-value { color: var(--text); font-weight: 400; }
-
-    .info-value a {
-      color: var(--cyan);
-      text-decoration: none;
-      font-size: 13px;
-    }
-
+    .info-value { color: var(--ink2); }
+    .info-value a { color: var(--green); text-decoration: none; font-weight: 500; }
     .info-value a:hover { text-decoration: underline; }
 
-    .chips {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .chip {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      background: rgba(7,10,16,0.4);
-      transition: all 0.15s;
-    }
-
-    .chip:hover {
-      border-color: rgba(56,189,248,0.3);
-      color: var(--cyan);
-    }
-
-    .chip.accent {
-      border-color: rgba(56,189,248,0.25);
-      color: var(--cyan);
-      background: rgba(56,189,248,0.06);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-   .project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(56,189,248,0.04), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.25s;
-  pointer-events: none;
-}
-
-    .project-card:hover::before { opacity: 1; }
-
-    .project-card:hover {
-      border-color: rgba(56,189,248,0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-    }
-
-   .project-card > * {
-  position: relative;
-  z-index: 1;
-}
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .project-icon {
-      font-size: 28px;
-      width: 52px; height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(56,189,248,0.07);
-      border: 1px solid rgba(56,189,248,0.15);
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-
-    .project-title-block { flex: 1; }
-
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .project-meta {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted2);
-    }
-
-    .project-desc {
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .project-points {
-      list-style: none;
-      margin-bottom: 16px;
-    }
-
-    .project-points li {
-      font-size: 14px;
-      color: var(--muted);
-      padding: 5px 0 5px 18px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .project-points li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--cyan);
-      font-size: 11px;
-      top: 7px;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    /* ─── Skills ─── */
+    .skills-layout {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
     }
 
     .skill-group {
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
-      transition: all 0.2s;
+      padding: 22px 24px;
+      transition: border-color 0.2s, transform 0.2s;
     }
 
     .skill-group:hover {
-      border-color: var(--border-strong);
+      border-color: rgba(34,197,94,0.2);
       transform: translateY(-2px);
     }
 
-    .skill-group-title {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .sg-head {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .skill-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+    .sg-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
     }
 
-    .skill-item:last-child { border-bottom: none; }
+    .sk-green { background: rgba(34,197,94,0.1); }
+    .sk-blue  { background: rgba(56,189,248,0.1); }
+    .sk-purple{ background: rgba(167,139,250,0.1); }
 
-    .skill-name {
-      font-size: 13.5px;
-      color: var(--muted);
+    .sg-title { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+
+    .stag-list { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .stag {
+      font-family: var(--ff-mono); font-size: 11.5px;
+      padding: 5px 10px; border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg2); color: var(--muted);
+      transition: all 0.15s;
     }
 
-    .skill-bar-wrap {
-      width: 70px;
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 999px;
-      overflow: hidden;
-    }
+    .stag:hover { border-color: var(--green); color: var(--green); }
+    .stag.p { background: var(--green-dim); color: var(--green); border-color: rgba(34,197,94,0.3); font-weight: 500; }
+    .stag.s { background: var(--surface2); color: var(--ink2); border-color: var(--border-str); }
 
-    .skill-bar {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--cyan), var(--teal));
-      transform-origin: left;
-      animation: grow-bar 1s ease both;
-    }
+    /* ─── Projects ─── */
+    .projects-list { display: flex; flex-direction: column; gap: 16px; }
 
-    @keyframes grow-bar {
-      from { transform: scaleX(0); }
-      to { transform: scaleX(1); }
-    }
-
-    .timeline { position: relative; padding-left: 28px; }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px; top: 6px; bottom: 6px;
-      width: 1px;
-      background: linear-gradient(180deg, var(--cyan), transparent);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 24px;
-    }
-
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-dot {
-      position: absolute;
-      left: -25px;
-      top: 5px;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      border: 2px solid var(--cyan);
-      background: var(--bg);
-      box-shadow: 0 0 8px rgba(56,189,248,0.3);
-    }
-
-    .timeline-period {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--cyan);
-      margin-bottom: 4px;
-    }
-
-    .timeline-title {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .timeline-sub {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      background: var(--card);
+    .project-card {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      text-decoration: none;
+      padding: 28px 30px;
       transition: all 0.22s;
+      position: relative; overflow: hidden;
     }
 
-    .contact-link:hover {
-      background: var(--card-hover);
-      border-color: rgba(56,189,248,0.25);
+    .project-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--green), var(--accent2));
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.22s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(34,197,94,0.2);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5);
       transform: translateY(-2px);
-      text-decoration: none;
     }
 
-    .contact-icon {
-      font-size: 20px;
-      width: 42px; height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(56,189,248,0.08);
-      border: 1px solid rgba(56,189,248,0.15);
-      border-radius: 10px;
+    .project-card:hover::before { transform: scaleY(1); }
+
+    .proj-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px; margin-bottom: 14px;
+    }
+
+    .proj-icon {
+      font-size: 22px;
+      width: 48px; height: 48px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
 
-    .contact-info-title {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
+    .proj-title {
+      font-family: var(--ff-display);
+      font-size: 17px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px;
     }
 
-    .contact-info-sub {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: var(--font-mono);
+    .proj-meta {
+      font-family: var(--ff-mono);
+      font-size: 11px; color: var(--muted);
     }
 
-    .section-head {
-      margin-bottom: 20px;
+    .proj-desc {
+      font-size: 14.5px; line-height: 1.65;
+      color: var(--ink2); margin-bottom: 16px;
     }
 
-    .section-head h2 {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text);
+    .impact-list {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
     }
 
-    .section-head p {
-      color: var(--muted);
-      font-size: 15px;
-      margin-top: 6px;
+    .impact {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: var(--green-dim);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 999px;
+      font-size: 12px; color: var(--green); font-weight: 500;
     }
 
+    .impact::before { content: '✓'; font-weight: 700; }
+
+    .ttags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .ttag {
+      font-family: var(--ff-mono); font-size: 11px;
+      padding: 4px 9px; border-radius: 6px;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--muted);
+    }
+
+    .ttag.m {
+      background: var(--surface2);
+      border-color: var(--border-str); color: var(--ink2); font-weight: 500;
+    }
+
+    .proj-links { margin-top: 18px; display: flex; gap: 10px; }
+
+    /* ─── Education ─── */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .edu-card:hover { border-color: rgba(34,197,94,0.2); transform: translateY(-2px); }
+
+    .edu-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--green-dim);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+
+    .edu-period {
+      font-family: var(--ff-mono); font-size: 10.5px;
+      color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+    }
+
+    .edu-title {
+      font-family: var(--ff-display);
+      font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px;
+    }
+
+    .edu-sub { font-size: 13px; color: var(--muted); }
+
+    /* ─── Contact ─── */
+    .contact-area {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: start;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, var(--surface2), var(--surface3));
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 40px rgba(34,197,94,0.05);
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--accent2));
+    }
+
+    .cta-over {
+      font-family: var(--ff-mono); font-size: 10px; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px;
+    }
+
+    .cta-h {
+      font-family: var(--ff-display);
+      font-size: 26px; font-weight: 800;
+      letter-spacing: -0.03em; color: var(--ink);
+      line-height: 1.2; margin-bottom: 14px;
+    }
+
+    .cta-h span { color: var(--green); }
+
+    .cta-body {
+      font-size: 14.5px; line-height: 1.65;
+      color: var(--muted); margin-bottom: 28px;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+
+    .cl {
+      display: flex; align-items: center; gap: 14px;
+      padding: 15px 18px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .cl:hover {
+      background: var(--surface2);
+      border-color: rgba(34,197,94,0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .cl-icon {
+      width: 38px; height: 38px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+
+    .cl-title { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+    .cl-sub { font-family: var(--ff-mono); font-size: 11px; color: var(--muted); }
+
+    /* ─── Footer ─── */
     footer {
-      margin-top: 60px;
-      padding-top: 24px;
+      margin-top: 72px; padding-top: 28px;
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: var(--muted2);
-      font-size: 13px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      color: var(--faint); font-size: 13px;
     }
 
     .footer-brand {
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--muted);
+      font-family: var(--ff-display);
+      font-size: 14px; font-weight: 700; color: var(--green);
     }
 
-    section { margin-top: 48px; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeIn {
       from { opacity: 0; }
-      to { opacity: 1; }
+      to   { opacity: 1; }
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ─── Responsive ─── */
     @media (max-width: 860px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-avatar { display: none; }
+      .hero-visual { display: none; }
       .main-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .passion-grid { grid-template-columns: 1fr; }
+      .skills-layout { grid-template-columns: 1fr 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-area { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 560px) {
-      .wrap { padding: 0 16px 60px; }
-      .skills-grid { grid-template-columns: 1fr; }
-      nav { padding: 0 16px; }
-      .navlinks { gap: 2px; }
-      .navlinks a { padding: 6px 8px; font-size: 12.5px; }
+    @media (max-width: 580px) {
+      .wrap { padding: 0 18px 80px; }
+      nav { padding: 0 18px; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 38px; }
     }
 
     a { color: inherit; }
   </style>
 </head>
 <body>
+  <div class="glow-top"></div>
   <div id="progress"></div>
-  <div class="ambient"></div>
-  <div class="ambient-2"></div>
 
+  <!-- ─── Nav ─── -->
   <header>
     <nav>
-      <div class="brand">
-        <span class="brand-dot"></span>
+      <a class="brand" href="#">
+        <div class="brand-mono">MO</div>
         Marc-Olivier Bénié
-      </div>
+      </a>
       <div class="navlinks">
-        <a href="#apropos">À propos</a>
-        <a href="#projets">Projets</a>
+        <a href="#apropos">Profil</a>
         <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#formation">Formation</a>
         <a href="#contact" class="nav-cta">Contact →</a>
       </div>
     </nav>
@@ -892,434 +735,550 @@
 
   <main class="wrap">
 
+    <!-- ─── Hero ─── -->
     <section class="hero">
-      <div class="hero-content">
-        <div class="status-badge">
-          <span class="status-dot"></span>
-          Portfolio personnel · Projets · Compétences
-        </div>
-        <h1>
-          Marc-Olivier Bénié<br>
-          <span class="name-accent">Construire, analyser, améliorer</span>
-        </h1>
+      <div>
+        <div class="hero-eyebrow">Informatique de gestion · UdeS · 2026</div>
+        <h1>Marc-Olivier<br><span>Bénié</span></h1>
+        <p class="hero-tagline">Analyste TI & BI — Données · Data Science · Solutions</p>
         <p class="hero-desc">
-          Salut, je suis <strong>Marc-Olivier Bénié</strong> — étudiant finissant en
-          <strong>informatique de gestion à l'UdeS</strong>. Je suis passionné par la
-          <strong>technologie</strong>, les <strong>bases de données</strong>, le
-          <strong>développement</strong> et l’analyse. J’aime comprendre les besoins,
-          explorer des idées et créer des solutions utiles, qu’il s’agisse d’un projet web,
-          d’un système de données ou d’un outil orienté utilisateur.
+          Étudiant finissant spécialisé en <strong>informatique de gestion</strong>, avec une orientation forte
+          en <strong>BI & SQL</strong>, <strong>modélisation de données</strong> et <strong>analyse de données / data science</strong>.
+          Je transforme des besoins réels en insights clairs, des données brutes en décisions éclairées.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projets">📂 Voir mes projets</a>
-          <a class="btn btn-ghost" href="#contact">✉️ Me contacter</a>
-          <a class="btn btn-ghost" href="https://github.com/Cusio29" target="_blank" rel="noopener">⌥ GitHub</a>
+          <a class="btn btn-primary" href="#projets">Voir mes projets →</a>
+          <a class="btn btn-ghost" href="mailto:beniemarcolivier1@gmail.com">M'écrire</a>
+          <a class="btn btn-ghost" href="https://github.com/Cusio29" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
-      <div class="hero-avatar">
-        <div class="avatar-ring">
-          <div class="avatar-inner">MOB</div>
+      <div class="hero-visual">
+        <div class="avail-pill">
+          <span class="avail-dot"></span>
+          Disponible — Stages & postes TI
+        </div>
+        <div class="hero-card">
+          <div class="hero-initials">MOB</div>
+          <div class="hero-sub">Inf. de gestion</div>
         </div>
       </div>
     </section>
 
-    <div class="stats-row reveal">
-      <div class="stat-card">
-        <div class="stat-number">4+</div>
-        <div class="stat-label">Projets TI, BI & web</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">SQL</div>
-        <div class="stat-label">+ Power BI + React</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">Agile</div>
-        <div class="stat-label">Collaboration & projets</div>
-      </div>
+    <!-- Position pills -->
+    <div class="pos-strip reveal">
+      <span class="pos-pill hl">📊 BI & Analyse de données</span>
+      <span class="pos-pill">🗄️ SQL & Modélisation</span>
+      <span class="pos-pill">🧠 Data Science</span>
+      <span class="pos-pill">🎯 Analyse de solutions TI</span>
     </div>
 
-    <div class="main-grid" id="apropos">
-
-      <div class="card reveal">
-        <div class="section-label">Profil</div>
-        <h2>À propos de moi</h2>
-        <div class="about-text">
-          <p>
-            Je suis un étudiant finissant en <strong>informatique de gestion</strong> à l’Université de Sherbrooke,
-            avec un intérêt marqué pour la <strong>technologie</strong> et tout ce qu’elle permet de construire,
-            d’optimiser et de mieux comprendre. J’aime découvrir comment un besoin peut être transformé en solution
-            concrète, utile et bien structurée.
-          </p>
-          <p>
-            Mon parcours m’a amené à développer un fort intérêt pour les <strong>bases de données</strong>,
-            la modélisation, la qualité de l’information et l’analyse. J’aime travailler avec les données,
-            les organiser, les comprendre et les utiliser pour produire quelque chose de clair, de logique et de pertinent.
-          </p>
-          <p>
-            Je m’intéresse aussi beaucoup au <strong>développement</strong>, particulièrement lorsqu’il s’agit de créer
-            des applications ou des interfaces qui répondent à de vrais besoins. Ce portfolio reflète donc un profil
-            polyvalent, curieux et motivé, à l’intersection de la technologie, des données et de la création de solutions.
-          </p>
-        </div>
-
-        <div class="passion-grid">
-          <div class="passion-item">
-            <div class="passion-icon">⚙️</div>
-            <div class="passion-title">Technologie</div>
-            <div class="passion-desc">Curieux des outils numériques, de l’automatisation et de la manière dont la technologie peut améliorer le quotidien.</div>
-          </div>
-          <div class="passion-item">
-            <div class="passion-icon">🗄️</div>
-            <div class="passion-title">Bases de données</div>
-            <div class="passion-desc">Intérêt marqué pour la modélisation, la structuration de l’information et la qualité des données.</div>
-          </div>
-          <div class="passion-item">
-            <div class="passion-icon">💻</div>
-            <div class="passion-title">Développement</div>
-            <div class="passion-desc">J’aime concevoir des applications simples, utiles et bien organisées, du besoin initial jusqu’au résultat final.</div>
-          </div>
-          <div class="passion-item">
-            <div class="passion-icon">📊</div>
-            <div class="passion-title">Analyse</div>
-            <div class="passion-desc">Comprendre un problème, explorer ses dimensions et proposer une solution logique fait partie de ce qui me motive le plus.</div>
-          </div>
-        </div>
-
-        <div class="chips">
-          <span class="chip accent">Technologie</span>
-          <span class="chip accent">Bases de données</span>
-          <span class="chip accent">Développement</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Power BI</span>
-          <span class="chip">React</span>
-          <span class="chip">Documentation</span>
-          <span class="chip">Git</span>
-          <span class="chip">Analyse</span>
-        </div>
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div class="card reveal">
-          <div class="section-label">Infos</div>
-          <h2>Contact rapide</h2>
-          <div>
-            <div class="info-item">
-              <span class="info-label">Statut</span>
-              <span class="info-value">Étudiant finissant — UdeS</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Intérêts</span>
-              <span class="info-value">Technologie • Données • Développement</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Email</span>
-              <span class="info-value"><a href="mailto:beniemarcolivier1@gmail.com">beniemarcolivier1@gmail.com</a></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">GitHub</span>
-              <span class="info-value"><a href="https://github.com/Cusio29" target="_blank" rel="noopener">github.com/Cusio29</a></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">LinkedIn</span>
-              <span class="info-value"><a href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">Voir le profil →</a></span>
-            </div>
-          </div>
-        </div>
+    <!-- ─── À propos ─── -->
+    <section id="apropos">
+      <div class="main-grid">
 
         <div class="card reveal">
-          <div class="section-label">Formation</div>
-          <h2>Parcours</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-period">2024 – 2026</div>
-              <div class="timeline-title">B.Sc. Informatique de gestion</div>
-              <div class="timeline-sub">Université de Sherbrooke</div>
+          <div class="section-label">Profil professionnel</div>
+          <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:18px;">À propos de moi</h2>
+          <div class="about-intro">
+            <p>
+              Étudiant finissant en <strong>informatique de gestion à l'Université de Sherbrooke</strong>,
+              je suis à la croisée des données, de l'analyse et des systèmes décisionnels. Mon objectif :
+              comprendre un besoin, le structurer et produire une analyse ou une solution qui génère de la valeur.
+            </p>
+            <p>
+              Mon domaine de prédilection, c'est la <strong>donnée</strong> — la modéliser, la nettoyer,
+              la transformer et l'analyser pour prendre de meilleures décisions. Je m'intéresse activement
+              à l'<strong>analyse de données et à la data science</strong> : Python, statistiques, visualisation,
+              et apprentissage automatique appliqué. La BI et SQL restent au cœur de ma boîte à outils.
+            </p>
+            <p>
+              Ce qui me distingue : je suis rigoureux, curieux et orienté <strong>résultats</strong>.
+              Je documente ce que je fais, je questionne les données et j'apprends en construisant.
+            </p>
+          </div>
+          <div class="value-grid">
+            <div class="val-item">
+              <div class="val-icon">📊</div>
+              <div class="val-title">BI & Tableaux de bord</div>
+              <div class="val-desc">Power BI, KPI — transformer des données brutes en insights actionnables.</div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-period">En cours</div>
-              <div class="timeline-title">Data Analytics Master 2026</div>
-              <div class="timeline-sub">Udemy (en ligne)</div>
+            <div class="val-item">
+              <div class="val-icon">🗄️</div>
+              <div class="val-title">Bases de données & SQL</div>
+              <div class="val-desc">Modélisation dimensionnelle, entrepôt de données, qualité et intégration.</div>
+            </div>
+            <div class="val-item">
+              <div class="val-icon">🧠</div>
+              <div class="val-title">Analyse de données & Data Science</div>
+              <div class="val-desc">Python, statistiques, visualisation et machine learning appliqué — comprendre les données en profondeur.</div>
+            </div>
+            <div class="val-item">
+              <div class="val-icon">🎯</div>
+              <div class="val-title">Analyse de solutions TI</div>
+              <div class="val-desc">Exigences, cas d'utilisation, tests — de l'idée à la solution documentée.</div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <section id="projets">
-      <div class="section-head reveal">
-        <div class="section-label">Réalisations</div>
-        <h2>Projets récents</h2>
-        <p>Quelques projets qui illustrent ma curiosité, ma polyvalence et ma manière d’apprendre en construisant.</p>
-      </div>
-
-      <div class="projects-grid">
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <div class="project-icon">📝</div>
-            <div class="project-title-block">
-              <div class="project-title">TaskLite — Application web de gestion de tâches</div>
-              <div class="project-meta">React • TypeScript • IndexedDB • UI/UX</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="card reveal">
+            <div class="section-label">Coordonnées</div>
+            <h3 style="font-family:var(--ff-display);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:16px;">Contact rapide</h3>
+            <div>
+              <div class="info-item">
+                <span class="info-label">Statut</span>
+                <span class="info-value">Finissant — UdeS, 2026</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Orienté</span>
+                <span class="info-value">BI · Données · Data Science</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value"><a href="mailto:beniemarcolivier1@gmail.com">beniemarcolivier1@gmail.com</a></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">GitHub</span>
+                <span class="info-value"><a href="https://github.com/Cusio29" target="_blank">github.com/Cusio29</a></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">LinkedIn</span>
+                <span class="info-value"><a href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank">Voir le profil →</a></span>
+              </div>
             </div>
           </div>
-          <p class="project-desc">
-            Conception et développement d’une application web permettant de centraliser, organiser et suivre des tâches
-            dans une interface moderne et intuitive. Ce projet met en valeur mon intérêt pour le développement,
-            l’expérience utilisateur et la structuration logique de l’information.
-          </p>
-          <ul class="project-points">
-            <li>Création, gestion et suppression de tâches avec priorités, statuts et échéances</li>
-            <li>Organisation des tâches par listes et filtres avancés</li>
-            <li>Gestion du cycle de vie des tâches : TODO, DOING, DONE</li>
-            <li>Détection des tâches en retard et vue rapide des tâches du jour</li>
-            <li>Stockage local des données dans le navigateur avec IndexedDB et Dexie.js</li>
-            <li>Interface moderne avec cartes, badges visuels, recherche et statistiques</li>
-          </ul>
-          <div class="chips">
-            <span class="chip accent">React</span>
-            <span class="chip accent">TypeScript</span>
-            <span class="chip accent">Dexie.js</span>
-            <span class="chip">IndexedDB</span>
-            <span class="chip">UI responsive</span>
-            <span class="chip">Logique métier</span>
-          </div>
-          <div class="project-links">
-            <a class="btn btn-primary" href="https://github.com/Cusio29/Task-Lite" target="_blank" rel="noopener">
-              🔗 Voir le projet sur GitHub
+
+          <div class="card reveal" style="background:var(--green-dim);border-color:rgba(34,197,94,0.2);">
+            <div class="section-label">Recherche active</div>
+            <p style="font-size:14px;color:var(--ink2);line-height:1.65;">
+              À la recherche d'un <strong style="color:var(--green);">stage ou premier poste</strong>
+              en BI, analyse de données ou data science pour 2026.
+            </p>
+            <a class="btn btn-primary" href="mailto:beniemarcolivier1@gmail.com"
+               style="margin-top:16px;width:100%;justify-content:center;">
+              ✉️ Prendre contact
             </a>
           </div>
         </div>
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <div class="project-icon">📊</div>
-            <div class="project-title-block">
-              <div class="project-title">Tableau de bord décisionnel — Power BI + SQL</div>
-              <div class="project-meta">BI • KPI • Data Quality • Visualisation</div>
-            </div>
-          </div>
-          <p class="project-desc">
-            Conception d’un tableau de bord interactif permettant de suivre des indicateurs clés de performance
-            à partir de données opérationnelles. Ce projet m’a permis de travailler la transformation de données,
-            la visualisation et la structuration d’informations utiles.
-          </p>
-          <ul class="project-points">
-            <li>Définition et sélection des KPI pertinents</li>
-            <li>Nettoyage, validation et transformation des données sources via SQL</li>
-            <li>Création de visuels clairs et interactifs dans Power BI</li>
-            <li>Documentation des règles et des sources utilisées</li>
-          </ul>
-          <div class="chips">
-            <span class="chip accent">Power BI</span>
-            <span class="chip accent">SQL</span>
-            <span class="chip">KPI</span>
-            <span class="chip">DAX</span>
-            <span class="chip">Qualité des données</span>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <div class="project-icon">🏗️</div>
-            <div class="project-title-block">
-              <div class="project-title">Entrepôt de données — ETL/ELT + Modélisation</div>
-              <div class="project-meta">Data Warehouse • Modélisation • ETL/ELT • Intégration</div>
-            </div>
-          </div>
-          <p class="project-desc">
-            Projet de structuration et de migration de données vers une architecture analytique organisée.
-            Ce travail met en avant mon intérêt pour la modélisation, l’intégration de données et la cohérence
-            des structures utilisées à des fins analytiques.
-          </p>
-          <ul class="project-points">
-            <li>Modélisation dimensionnelle avec tables de faits et dimensions</li>
-            <li>Conception et documentation des pipelines ETL/ELT</li>
-            <li>Mise en place de règles de qualité des données</li>
-            <li>Tests d’intégration et validation du processus global</li>
-          </ul>
-          <div class="chips">
-            <span class="chip accent">Modélisation dimensionnelle</span>
-            <span class="chip accent">ETL/ELT</span>
-            <span class="chip">SQL</span>
-            <span class="chip">Qualité des données</span>
-            <span class="chip">Documentation</span>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <div class="project-icon">🎯</div>
-            <div class="project-title-block">
-              <div class="project-title">Analyse de solution TI</div>
-              <div class="project-meta">Analyse • Exigences • Tests • Collaboration</div>
-            </div>
-          </div>
-          <p class="project-desc">
-            Analyse d’un besoin utilisateur et structuration d’une solution TI documentée et testable.
-            Ce projet m’a permis d’explorer la partie plus fonctionnelle du travail informatique :
-            comprendre un besoin, le clarifier et le traduire en éléments concrets.
-          </p>
-          <ul class="project-points">
-            <li>Recueil et clarification des besoins</li>
-            <li>Rédaction d’exigences fonctionnelles et non fonctionnelles</li>
-            <li>Conception de scénarios et cas de tests</li>
-            <li>Travail d’équipe et organisation du projet en mode collaboratif</li>
-          </ul>
-          <div class="chips">
-            <span class="chip accent">Analyse</span>
-            <span class="chip accent">Exigences</span>
-            <span class="chip">Tests</span>
-            <span class="chip">Documentation</span>
-            <span class="chip">Collaboration</span>
-          </div>
-        </div>
       </div>
     </section>
 
+    <!-- ─── Compétences ─── -->
     <section id="competences">
       <div class="section-head reveal">
         <div class="section-label">Compétences</div>
         <h2>Boîte à outils</h2>
-        <p>Un profil polyvalent à l’intersection des données, du développement et de la structuration de solutions.</p>
+        <p>Un profil technique orienté données, BI et data science.</p>
       </div>
 
-      <div class="skills-grid">
+      <div class="skills-layout">
         <div class="skill-group reveal">
-          <div class="skill-group-title">📐 Analyse & Structuration</div>
-          <div class="skill-item">
-            <span class="skill-name">Analyse des besoins</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          <div class="sg-head">
+            <div class="sg-icon sk-green">📊</div>
+            <div class="sg-title">BI & Données</div>
           </div>
-          <div class="skill-item">
-            <span class="skill-name">Exigences fonctionnelles</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Tests & validation</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Documentation</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Travail en équipe</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+          <div class="stag-list">
+            <span class="stag p">SQL</span>
+            <span class="stag p">Power BI</span>
+            <span class="stag s">ETL / ELT</span>
+            <span class="stag">Modélisation dimensionnelle</span>
+            <span class="stag">Data Warehouse</span>
+            <span class="stag">Qualité des données</span>
+            <span class="stag">ObjectDB</span>
+            <span class="stag">MariaDB</span>
           </div>
         </div>
 
         <div class="skill-group reveal">
-          <div class="skill-group-title">🗄️ Données & BI</div>
-          <div class="skill-item">
-            <span class="skill-name">SQL</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:86%"></div></div>
+          <div class="sg-head">
+            <div class="sg-icon sk-blue">🧠</div>
+            <div class="sg-title">Analyse de données & Data Science</div>
           </div>
-          <div class="skill-item">
-            <span class="skill-name">Power BI</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">ETL / ELT</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:74%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Modélisation de données</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:76%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Qualité des données</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+          <div class="stag-list">
+            <span class="stag p">Python</span>
+            <span class="stag p">Pandas</span>
+            <span class="stag s">NumPy</span>
+            <span class="stag s">Scikit-learn</span>
+            <span class="stag s">Matplotlib / Seaborn</span>
+            <span class="stag">Machine learning</span>
+            <span class="stag">Statistiques</span>
+            <span class="stag">Visualisation de données</span>
+            <span class="stag">Jupyter Notebook</span>
           </div>
         </div>
 
         <div class="skill-group reveal">
-          <div class="skill-group-title">💻 Développement & Outils</div>
-          <div class="skill-item">
-            <span class="skill-name">Git / GitHub</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+          <div class="sg-head">
+            <div class="sg-icon sk-purple">🎯</div>
+            <div class="sg-title">Analyse TI & Outils</div>
           </div>
-          <div class="skill-item">
-            <span class="skill-name">Python</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">JavaScript</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:58%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">React</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:62%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">VS Code</span>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+          <div class="stag-list">
+            <span class="stag p">Analyse des besoins</span>
+            <span class="stag s">Exigences fonctionnelles</span>
+            <span class="stag s">Tests & validation</span>
+            <span class="stag">Documentation technique</span>
+            <span class="stag">Git & GitHub</span>
+            <span class="stag">Agile / Collaboration</span>
+            <span class="stag">React / TypeScript</span>
+            <span class="stag">Java (Servlets/JSP)</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ─── Projets ─── -->
+    <section id="projets">
+      <div class="section-head reveal">
+        <div class="section-label">Réalisations</div>
+        <h2>Projets récents</h2>
+        <p>Des projets variés qui illustrent ma capacité à concevoir, structurer et livrer des solutions concrètes.</p>
+      </div>
+
+      <div class="projects-list">
+
+        <!-- Projet APCE -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">🍓</div>
+            <div>
+              <div class="proj-title">Projet APCE — Système de gestion de producteurs</div>
+              <div class="proj-meta"> Java (Servlets/JSP) · ObjectDB · Application Web · Équipe</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+  Développement d'une application web complète pour l'Association des Producteurs de Confitures de l'Estrie
+  (APCE). Le système permet la gestion des producteurs, fournisseurs et distributeurs dans une architecture
+  à base de données orientée objet. <strong>Projet réalisé en équipe.</strong> 
+</p>
+          <div class="impact-list">
+            <span class="impact">Application web multi-rôles (Producteur, Fournisseur, Distributeur)</span>
+            <span class="impact">Modélisation multi-entités avec relations complexes</span>
+            <span class="impact">Opérations CRUD complètes avec logique métier</span>
+            <span class="impact">Système d'authentification et de permissions par rôle</span>
+            <span class="impact">Traçabilité des produits de la production à la distribution</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">Java Servlets/JSP</span>
+            <span class="ttag m">ObjectDB</span>
+            <span class="ttag m">Apache Tomcat</span>
+            <span class="ttag">Modélisation OO</span>
+            <span class="ttag">Gestion de relations</span>
+            <span class="ttag">Travail d'équipe</span>
+          </div>
+               <div class="proj-links">
+  <a class="btn btn-primary" href="https://github.com/OlivierGau/IFT287" target="_blank">
+    Voir le projet ↗
+  </a>
+</div>
+        </div>
+   
+
+        <!-- Projet MonAgenda -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">📅</div>
+            <div>
+              <div class="proj-title">MonAgenda — Application web multi-services de gestion de tâches</div>
+              <div class="proj-meta"> Angular · Ionic · Laravel · MariaDB · Docker</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+  Conception et développement d'une application web multi-services de gestion d'événements
+  et de tâches. Architecture full-stack découplée avec frontend mobile-first, API backend robuste
+  et suite de tests automatisés. <strong>Projet réalisé en équipe.</strong> 
+</p>
+          <div class="impact-list">
+            <span class="impact">Architecture backend/frontend entièrement conçue</span>
+            <span class="impact">Fonctionnalités de gestion d'événements implémentées</span>
+            <span class="impact">Tests automatisés avec Cypress (E2E)</span>
+            <span class="impact">Application mobile-first avec Ionic</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">Angular</span>
+            <span class="ttag m">Ionic</span>
+            <span class="ttag m">Laravel</span>
+            <span class="ttag m">MariaDB</span>
+            <span class="ttag">Docker</span>
+            <span class="ttag">Cypress</span>
+            <span class="ttag">API REST</span>
+          </div>
+          <div class="proj-links">
+  <a class="btn btn-primary" href="https://depot-ce.dinf.usherbrooke.ca/dinf/collaboration/monagenda/monagenda" target="_blank">
+    Voir le projet ↗
+  </a>
+</div>
+        </div>
+
+        <!-- Projet TaskLite -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">📝</div>
+            <div>
+              <div class="proj-title">TaskLite — Application web de gestion de tâches</div>
+              <div class="proj-meta">React · TypeScript · IndexedDB / Dexie.js · UI/UX</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+            Conception et développement complet d'une application web de gestion de tâches personnelle.
+            Interface claire, données persistantes côté client sans backend, et logique métier robuste
+            adaptée aux habitudes de travail quotidiennes.
+          </p>
+          <div class="impact-list">
+            <span class="impact">Interface responsive fonctionnelle livrée</span>
+            <span class="impact">Persistance locale via IndexedDB sans backend</span>
+            <span class="impact">Cycle de vie complet : TODO → DOING → DONE</span>
+            <span class="impact">Détection automatique des tâches en retard</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">React</span>
+            <span class="ttag m">TypeScript</span>
+            <span class="ttag m">Dexie.js</span>
+            <span class="ttag">IndexedDB</span>
+            <span class="ttag">Filtres & recherche</span>
+          </div>
+          <div class="proj-links">
+            <a class="btn btn-primary" href="https://github.com/Cusio29/Task-Lite" target="_blank" rel="noopener">
+              Voir le projet ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Projet e-commerce -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">🛒</div>
+            <div>
+              <div class="proj-title">Site web e-commerce — Boutique de plantes</div>
+              <div class="proj-meta">React · Gestion d'état · UI responsive</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+            Développement d'une interface web responsive complète pour une boutique de plantes et produits
+            décoratifs. Accent mis sur l'expérience utilisateur avec navigation fluide, système de panier
+            et filtrage des articles géré via la gestion d'état React.
+          </p>
+          <div class="impact-list">
+            <span class="impact">Interface web responsive livrée</span>
+            <span class="impact">Système de navigation et panier fonctionnel</span>
+            <span class="impact">Filtrage des articles avec gestion d'état React</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">React</span>
+            <span class="ttag">Gestion d'état</span>
+            <span class="ttag">UI responsive</span>
+            <span class="ttag">E-commerce</span>
+          </div>
+          <div class="proj-links">
+  <a class="btn btn-primary" href="https://github.com/Cusio29/projet-siteweb-react-lamaison-jungle" target="_blank">
+    Voir le projet ↗
+  </a>
+</div>
+        </div>
+
+        <!-- Projet Tableau de bord BI -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">📊</div>
+            <div>
+              <div class="proj-title">Tableau de bord décisionnel — Power BI & SQL</div>
+              <div class="proj-meta">Power BI · SQL · KPI · Visualisation</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+            Conception d'un tableau de bord interactif permettant de suivre des indicateurs clés de performance
+            à partir de données opérationnelles. Tout le travail de transformation et de validation des données
+            a été effectué en SQL avant intégration dans Power BI.
+          </p>
+          <div class="impact-list">
+            <span class="impact">KPI définis, nettoyés et mis en production</span>
+            <span class="impact">Visuels interactifs Power BI (filtres, drill-down)</span>
+            <span class="impact">Données validées via règles SQL documentées</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">Power BI</span>
+            <span class="ttag m">SQL</span>
+            <span class="ttag">Transformation de données</span>
+            <span class="ttag">Qualité des données</span>
+            <span class="ttag">Documentation</span>
+          </div>
+        </div>
+
+        <!-- Projet Entrepôt de données -->
+        <div class="project-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">🏗️</div>
+            <div>
+              <div class="proj-title">Entrepôt de données — ETL/ELT & Modélisation dimensionnelle</div>
+              <div class="proj-meta">Data Warehouse · Modélisation · ETL/ELT · Intégration · Qualité</div>
+            </div>
+          </div>
+          <p class="proj-desc">
+  Conception d'une architecture analytique complète : modélisation dimensionnelle (faits/dimensions),
+  pipelines ETL/ELT, règles de qualité des données et documentation. 
+  <strong>Projet réalisé en équipe.</strong>
+</p>
+          <div class="impact-list">
+            <span class="impact">Schéma en étoile structuré et documenté</span>
+            <span class="impact">Pipelines ETL/ELT conçus et testés</span>
+            <span class="impact">Règles de qualité des données appliquées</span>
+            <span class="impact">Tests d'intégration et validation du processus global</span>
+          </div>
+          <div class="ttags">
+            <span class="ttag m">Modélisation dimensionnelle</span>
+            <span class="ttag m">ETL / ELT</span>
+            <span class="ttag">SQL</span>
+            <span class="ttag">Qualité des données</span>
+            <span class="ttag">Documentation</span>
+          </div>
+          <div class="proj-links">
+  <a class="btn btn-primary" href="https://github.com/sabaRachid/IGE487" target="_blank">
+    Voir le projet ↗
+  </a>
+</div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="project-card reveal">
+  <div class="proj-header">
+    <div class="proj-icon">🎯</div>
+    <div>
+      <div class="proj-title">Analyse de solution TI</div>
+      <div class="proj-meta">Analyse · Exigences · Tests · Collaboration · Équipe</div>
+    </div>
+  </div>
+
+  <p class="proj-desc">
+    Analyse d’un besoin utilisateur et structuration d’une solution TI documentée et testable.
+    Ce projet m’a permis de développer une approche rigoureuse de l’analyse fonctionnelle :
+    comprendre un besoin, le formaliser et le transformer en solution concrète.
+    <strong>Projet réalisé en équipe</strong>.
+  </p>
+
+  <div class="impact-list">
+    <span class="impact">Recueil et clarification des besoins utilisateurs</span>
+    <span class="impact">Rédaction d’exigences fonctionnelles et non fonctionnelles</span>
+    <span class="impact">Conception de cas d’utilisation et scénarios de test</span>
+    <span class="impact">Structuration d’une solution TI complète</span>
+    <span class="impact">Travail collaboratif et gestion de projet</span>
+  </div>
+
+  <div class="ttags">
+    <span class="ttag m">Analyse TI</span>
+    <span class="ttag m">Exigences</span>
+    <span class="ttag">Tests</span>
+    <span class="ttag">Documentation</span>
+    <span class="ttag">Collaboration</span>
+  </div>
+</div>
+
+    <!-- ─── Formation ─── -->
+    <section id="formation">
+      <div class="section-head reveal">
+        <div class="section-label">Formation</div>
+        <h2>Parcours académique</h2>
+      </div>
+
+      <div class="edu-grid reveal">
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-period">2024 – 2026</div>
+            <div class="edu-title">B.Sc. Informatique de gestion</div>
+            <div class="edu-sub">Université de Sherbrooke · Sherbrooke, QC</div>
+            <p style="margin-top:10px;font-size:13px;color:var(--muted);line-height:1.6;">
+              Bases de données, développement logiciel, BI, gestion de projets TI, analyse de systèmes, applications web.
+            </p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">📚</div>
+          <div>
+            <div class="edu-period">En cours · 2026</div>
+            <div class="edu-title">Data Analytics Master</div>
+            <div class="edu-sub">Udemy — Formation en ligne</div>
+            <p style="margin-top:10px;font-size:13px;color:var(--muted);line-height:1.6;">
+              Python pour l'analyse de données, visualisation, statistiques et machine learning appliqué.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Contact ─── -->
     <section id="contact">
       <div class="section-head reveal">
         <div class="section-label">Contact</div>
-        <h2>Restons en contact</h2>
-        <p>Vous pouvez me contacter ou suivre mon travail via les plateformes suivantes :</p>
+        <h2>Travaillons ensemble</h2>
       </div>
 
-      <div class="contact-grid reveal">
-        <a class="contact-link" href="mailto:beniemarcolivier1@gmail.com">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-info-title">Email</div>
-            <div class="contact-info-sub">beniemarcolivier1@gmail.com</div>
-          </div>
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">
-          <div class="contact-icon">🔗</div>
-          <div>
-            <div class="contact-info-title">LinkedIn</div>
-            <div class="contact-info-sub">marc-olivier-benie</div>
-          </div>
-        </a>
-        <a class="contact-link" href="https://github.com/Cusio29" target="_blank" rel="noopener">
-          <div class="contact-icon">⌥</div>
-          <div>
-            <div class="contact-info-title">GitHub</div>
-            <div class="contact-info-sub">github.com/Cusio29</div>
-          </div>
-        </a>
-        
+      <div class="contact-area reveal">
+        <div class="cta-card">
+          <div class="cta-over">Disponible — Stages & postes TI 2026</div>
+          <h2 class="cta-h">Vous avez une<br>opportunité <span>intéressante ?</span></h2>
+          <p class="cta-body">
+            Je suis à la recherche d'un stage ou d'un premier poste en BI, analyse de données
+            ou data science à partir de 2026. Si mon profil correspond à vos besoins, je serais ravi d'en discuter.
+          </p>
+          <a class="btn btn-primary" href="mailto:beniemarcolivier1@gmail.com"
+             style="width:100%;justify-content:center;padding:13px;">
+            ✉️ M'envoyer un message
+          </a>
+        </div>
+
+        <div class="contact-links">
+          <a class="cl" href="mailto:beniemarcolivier1@gmail.com">
+            <div class="cl-icon">✉️</div>
+            <div>
+              <div class="cl-title">Email</div>
+              <div class="cl-sub">beniemarcolivier1@gmail.com</div>
+            </div>
+          </a>
+          <a class="cl" href="https://www.linkedin.com/in/marc-olivier-benie-b8a35433a" target="_blank" rel="noopener">
+            <div class="cl-icon">🔗</div>
+            <div>
+              <div class="cl-title">LinkedIn</div>
+              <div class="cl-sub">marc-olivier-benie</div>
+            </div>
+          </a>
+          <a class="cl" href="https://github.com/Cusio29" target="_blank" rel="noopener">
+            <div class="cl-icon">⌥</div>
+            <div>
+              <div class="cl-title">GitHub</div>
+              <div class="cl-sub">github.com/Cusio29</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
     <footer>
       <span class="footer-brand">Marc-Olivier Bénié</span>
-      <span>Technologie · Données · Développement</span>
-      <span>© <span id="y"></span> — Mis à jour en 2026</span>
+      <span style="color:var(--muted);">BI · Analyse de données · Data Science · Informatique de gestion</span>
+      <span>© <span id="y"></span></span>
     </footer>
+
   </main>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
     window.addEventListener('scroll', () => {
-      const h = document.body.scrollHeight - window.innerHeight;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
       document.getElementById('progress').style.width = (window.scrollY / h * 100) + '%';
-    });
+    }, { passive: true });
 
-    const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          setTimeout(() => e.target.classList.add('visible'), i * 70);
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.07 });
 
-    reveals.forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
